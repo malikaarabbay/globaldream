@@ -8,7 +8,7 @@ use himiklab\thumbnail\EasyThumbnailImage;
 use yii\helpers\Url;
 use common\models\Category;
 use yii\helpers\ArrayHelper;
-
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
@@ -42,17 +42,13 @@ use yii\helpers\ArrayHelper;
                     <div class="col-md-8 col-xs-12">
                         <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 
-                        <?= $form->field($model, 'description')->widget(Widget::className(), [
-                            'settings' => [
-                                'lang' => 'ru',
-                                'minHeight' => 150,
-                                'imageUpload' => Url::to(['/site/image-upload']),
-                                'imageManagerJson' => Url::to(['/site/images-get']),
-                                'plugins' => [
-                                    'imagemanager'
-                                ]
+                        <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                            'options' => ['rows' => 6],
+                            'preset' => 'full',
+                            'clientOptions' => [
+                                'filebrowserBrowseUrl' => '/elfinder/manager?filter=image&'
                             ]
-                        ]); ?>
+                        ]) ?>
 
                         <?= $form->field($model, 'is_published')->checkbox() ?>
 

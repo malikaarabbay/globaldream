@@ -8,7 +8,7 @@ use himiklab\thumbnail\EasyThumbnailImage;
 use yii\helpers\Url;
 use common\models\Category;
 use yii\helpers\ArrayHelper;
-
+use dosamigos\ckeditor\CKEditor;
 
 
 /* @var $this yii\web\View */
@@ -42,17 +42,13 @@ use yii\helpers\ArrayHelper;
 
                         <?= $form->field($model, 'category_id')->dropDownList(Yii::$app->params['categoryStatus']) ?>
 
-                        <?= $form->field($model, 'description')->widget(Widget::className(), [
-                            'settings' => [
-                                'lang' => 'ru',
-                                'minHeight' => 150,
-                                'imageUpload' => Url::to(['/site/image-upload']),
-                                'imageManagerJson' => Url::to(['/site/images-get']),
-                                'plugins' => [
-                                    'imagemanager'
-                                ]
+                        <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                            'options' => ['rows' => 6],
+                            'preset' => 'full',
+                            'clientOptions' => [
+                                'filebrowserBrowseUrl' => '/elfinder/manager?filter=image&'
                             ]
-                        ]); ?>
+                        ]) ?>
 
                         <?= $form->field($model, 'is_published')->checkbox() ?>
 

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use common\models\Category;
 use yii\helpers\ArrayHelper;
 use common\models\Param;
-
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -51,29 +51,21 @@ use common\models\Param;
                         
                         <?= $form->field($model, 'size')->textInput(['maxlength' => 255]) ?>
 
-                        <?= $form->field($model, 'announce')->widget(Widget::className(), [
-                            'settings' => [
-                                'lang' => 'ru',
-                                'minHeight' => 150,
-                                'imageUpload' => Url::to(['/site/image-upload']),
-                                'imageManagerJson' => Url::to(['/site/images-get']),
-                                'plugins' => [
-                                    'imagemanager'
-                                ]
+                        <?= $form->field($model, 'announce')->widget(CKEditor::className(), [
+                            'options' => ['rows' => 4],
+                            'preset' => 'full',
+                            'clientOptions' => [
+                                'filebrowserBrowseUrl' => '/elfinder/manager?filter=image&'
                             ]
-                        ]); ?>
+                        ]) ?>
 
-                        <?= $form->field($model, 'description')->widget(Widget::className(), [
-                            'settings' => [
-                                'lang' => 'ru',
-                                'minHeight' => 150,
-                                'imageUpload' => Url::to(['/site/image-upload']),
-                                'imageManagerJson' => Url::to(['/site/images-get']),
-                                'plugins' => [
-                                    'imagemanager'
-                                ]
+                        <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                            'options' => ['rows' => 6],
+                            'preset' => 'full',
+                            'clientOptions' => [
+                                'filebrowserBrowseUrl' => '/elfinder/manager?filter=image&'
                             ]
-                        ]); ?>
+                        ]) ?>
 
                         <h3>Параметры</h3>
                         <?php foreach ($params as $param) { ?>

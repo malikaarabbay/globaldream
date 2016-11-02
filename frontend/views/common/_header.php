@@ -8,27 +8,27 @@ use yii\helpers\Url;
     <div class="header__inner">
         <nav class="menu-nav">
             <ul class="menu">
-                <li class="menu__item menu__item--active">
-                    <a href="/">
+                <li <?php if (stripos($_SERVER['REQUEST_URI'],'site/index') !== false) {echo 'class="menu__item menu__item--active"';} ?> class="menu__item">
+                    <a href="<?= Url::toRoute(['/site/index']) ?>">
                         Главная
                     </a>
                 </li>
-                <li class="menu__item">
+                <li <?php if (stripos($_SERVER['REQUEST_URI'],'article/view?slug=o-nas') !== false) {echo 'class="menu__item menu__item--active"';} ?> class="menu__item">
                     <a href="<?= Url::toRoute(['/article/view', 'slug' => 'o-nas']) ?>">
                         О нас
                     </a>
                 </li>
-                <li class="menu__item">
+                <li <?php if (stripos($_SERVER['REQUEST_URI'],'news') !== false) {echo 'class="menu__item menu__item--active"';} ?> class="menu__item">
                     <a href="<?= Url::toRoute(['/news/']) ?>">
                         Акции и новости
                     </a>
                 </li>
-                <li class="menu__item">
+                <li <?php if (stripos($_SERVER['REQUEST_URI'],'catalog') !== false) {echo 'class="menu__item menu__item--active"';} ?> class="menu__item">
                     <a href="<?= Url::toRoute(['/catalog/']) ?>">
                         Каталог
                     </a>
                 </li>
-                <li class="menu__item">
+                <li <?php if (stripos($_SERVER['REQUEST_URI'],'site/contact') !== false) {echo 'class="menu__item menu__item--active"';} ?> class="menu__item">
                     <a href="<?= Url::toRoute(['/site/contact']) ?>">
                         Контакты
                     </a>
